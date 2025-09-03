@@ -416,39 +416,7 @@ const ProjectsGrid = ({ projects, className = '' }) => (
   </div>
 );
 
-const MotionControls = ({ isPaused, onPause, onResume, onEmergencyStop, onSkipIntro, effects }) => {
-  if (effects.minimalistControls) return null;
-  
-  return (
-    <div className="motion-controls fixed top-4 right-4 z-50 flex gap-2">
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={onSkipIntro}
-        className="bg-gray-900/80 border-gray-700 text-white hover:bg-gray-800"
-      >
-        <SkipForward className="w-4 h-4 mr-1" />
-        Skip Intro
-      </Button>
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={isPaused ? onResume : onPause}
-        className="bg-gray-900/80 border-gray-700 text-white hover:bg-gray-800"
-      >
-        {isPaused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
-      </Button>
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={onEmergencyStop}
-        className="bg-red-900/80 border-red-700 text-white hover:bg-red-800"
-      >
-        <Square className="w-4 h-4" />
-      </Button>
-    </div>
-  );
-};
+// MotionControls removed - no longer using Button component
 
 export const EnhancedHelixProjectsShowcase = ({ 
   autoRotate = true,
@@ -718,15 +686,7 @@ export const EnhancedHelixProjectsShowcase = ({
                     Skip 3D animation and view projects list
                   </a>
 
-                  {/* Motion controls */}
-                  <MotionControls 
-                    isPaused={isPaused}
-                    onPause={handlePause}
-                    onResume={handleResume}
-                    onEmergencyStop={handleEmergencyStop}
-                    onSkipIntro={handleSkipIntro}
-                    effects={effects}
-                  />
+                  {/* Motion controls removed - no UI components available */}
 
                   {/* 3D Helix Scene */}
                   <div 
