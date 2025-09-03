@@ -11,6 +11,21 @@ export default defineConfig({
       { find: '@', replacement: path.resolve(__dirname, 'src') }
     ]
   },
+  build: {
+    target: 'es2020',
+    minify: 'esbuild',
+    cssMinify: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          icons: ['lucide-react']
+        }
+      }
+    },
+    reportCompressedSize: true,
+    chunkSizeWarningLimit: 500
+  },
   server: {
     host: '0.0.0.0',
     port: 4000,

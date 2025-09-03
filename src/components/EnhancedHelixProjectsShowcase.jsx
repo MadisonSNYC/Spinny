@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
-import { Button } from './ui/button.jsx';
-import { Pause, Play, SkipForward, Square } from 'lucide-react';
 import { projects } from '../data/projects.js';
 import { helixPositionCache } from '../utils/helixPositionCache.js';
 import { performanceMonitor } from '../utils/performanceMonitor.js';
@@ -15,10 +13,7 @@ import { NavigationEffects } from './effects/NavigationEffects.jsx';
 import { TypographyEffects } from './effects/TypographyEffects.jsx';
 
 // Advanced controls
-import { AdvancedHelixPanel } from './AdvancedHelixPanel.jsx';
-import { EffectsControlPanel } from './EffectsControlPanel.jsx';
 import { useHelixConfig as useOldHelixConfig } from '../hooks/useHelixConfig.js';
-import { useLockedEffects } from '../hooks/useLockedEffects.js';
 
 const SpringConnection = ({ start, end, opacity = 1, color = "#00ffff", intensity = 1 }) => {
   // Check if positions are properly populated
@@ -420,39 +415,7 @@ const ProjectsGrid = ({ projects, className = '' }) => (
   </div>
 );
 
-const MotionControls = ({ isPaused, onPause, onResume, onEmergencyStop, onSkipIntro, effects }) => {
-  if (effects.minimalistControls) return null;
-  
-  return (
-    <div className="motion-controls fixed top-4 right-4 z-50 flex gap-2">
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={onSkipIntro}
-        className="bg-gray-900/80 border-gray-700 text-white hover:bg-gray-800"
-      >
-        <SkipForward className="w-4 h-4 mr-1" />
-        Skip Intro
-      </Button>
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={isPaused ? onResume : onPause}
-        className="bg-gray-900/80 border-gray-700 text-white hover:bg-gray-800"
-      >
-        {isPaused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
-      </Button>
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={onEmergencyStop}
-        className="bg-red-900/80 border-red-700 text-white hover:bg-red-800"
-      >
-        <Square className="w-4 h-4" />
-      </Button>
-    </div>
-  );
-};
+// MotionControls removed - no longer using Button component
 
 export const EnhancedHelixProjectsShowcase = ({ 
   autoRotate = true,
@@ -495,14 +458,9 @@ export const EnhancedHelixProjectsShowcase = ({
     updateRuntimeInfo 
   } = useOldHelixConfig();
   
-  // Locked effects management
-  const { lockedEffects, toggleLock } = useLockedEffects();
-
-  // Protected effect toggle function that respects locks
+  // Effect toggle function (no longer needs lock protection)
   const handleEffectToggle = (effectKey, value) => {
-    if (!lockedEffects[effectKey]) {
-      onEffectToggle?.(effectKey, value);
-    }
+    onEffectToggle?.(effectKey, value);
   };
 
   // Update runtime info for the panel - throttled to reduce re-renders
@@ -542,8 +500,9 @@ export const EnhancedHelixProjectsShowcase = ({
     let isUpdating = false;
     let velocity = 0;
     let lastTime = performance.now();
-    const friction = 0.95; // Momentum decay
-    const minVelocity = 0.001; // Threshold to stop momentum
+    const friction = 0.92; // Increased friction to reduce momentum
+    const minVelocity = 0.01; // Higher threshold to stop momentum sooner
+    const maxVelocity = 2; // Cap maximum velocity to prevent glitching
 
     const updateScrollAnimation = () => {
       const now = performance.now();
@@ -557,6 +516,9 @@ export const EnhancedHelixProjectsShowcase = ({
       if (pendingDelta !== 0 || Math.abs(velocity) > minVelocity) {
         // Update velocity
         velocity = velocity * friction + pendingDelta;
+        
+        // Clamp velocity to prevent glitching
+        velocity = Math.max(-maxVelocity, Math.min(maxVelocity, velocity));
         
         // Apply velocity to scroll using new state management
         updateScroll(velocity, now);
@@ -582,10 +544,10 @@ export const EnhancedHelixProjectsShowcase = ({
       const deltaX = 0; // Explicitly ignore horizontal scroll
       
       // Normalize the delta for consistent behavior across devices
-      const normalizedDelta = deltaY * 0.0026; // Increased by 30% for more transformation
+      const normalizedDelta = deltaY * 0.0018; // Reduced for smoother scrolling
       const sensitivity = helixConfig.scrollSensitivity || 1;
       
-      pendingDelta = normalizedDelta * sensitivity * 0.15; // Apply smoothing factor
+      pendingDelta = normalizedDelta * sensitivity * 0.12; // Apply smoothing factor
       
       if (!isUpdating) {
         isUpdating = true;
@@ -722,15 +684,7 @@ export const EnhancedHelixProjectsShowcase = ({
                     Skip 3D animation and view projects list
                   </a>
 
-                  {/* Motion controls */}
-                  <MotionControls 
-                    isPaused={isPaused}
-                    onPause={handlePause}
-                    onResume={handleResume}
-                    onEmergencyStop={handleEmergencyStop}
-                    onSkipIntro={handleSkipIntro}
-                    effects={effects}
-                  />
+                  {/* Motion controls removed - no UI components available */}
 
                   {/* 3D Helix Scene */}
                   <div 
@@ -848,31 +802,9 @@ export const EnhancedHelixProjectsShowcase = ({
                   </div>
                 </section>
                 
-                {/* Effects Control Panel */}
-                <EffectsControlPanel
-                  effects={effects}
-                  onEffectToggle={handleEffectToggle}
-                  onReset={onReset}
-                  onUndo={onUndo}
-                  onRedo={onRedo}
-                  canUndo={canUndo}
-                  canRedo={canRedo}
-                  setPlacementStrength={setPlacementStrength}
-                  setRepeatTurns={setRepeatTurns}
-                  lockedEffects={lockedEffects}
-                  onToggleLock={toggleLock}
-                />
+                {/* Effects Control Panel - Removed for streamlined UI */}
 
-                {/* Advanced Helix Control Panel */}
-                <AdvancedHelixPanel
-                  helixConfig={helixConfig}
-                  onConfigChange={updateHelixConfig}
-                  onReset={resetHelixConfig}
-                  onUndo={undoHelixConfig}
-                  onRedo={redoHelixConfig}
-                  canUndo={canUndoHelix}
-                  canRedo={canRedoHelix}
-                />
+                {/* Advanced Helix Control Panel - Removed for streamlined UI */}
               </TypographyEffects>
             </NavigationEffects>
           </StructureEffects>
