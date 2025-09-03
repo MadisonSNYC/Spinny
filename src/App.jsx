@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { EnhancedHelixProjectsShowcase } from './components/EnhancedHelixProjectsShowcase.jsx';
 import { HelixProvider } from './contexts/HelixContext.jsx';
 import { useEffectsCompat } from './hooks/useMigrationBridge.js';
-import { PerformanceMonitor } from './components/PerformanceMonitor.jsx';
 import './App.css';
 
 function AppContent() {
@@ -26,8 +25,7 @@ function AppContent() {
         setRepeatTurns={setRepeatTurns}
       />
       
-      <PerformanceMonitor showVisual={true} />
-      {/* Test components removed for production */}
+      {/* All debug components removed for production */}
     </div>
   );
 }
