@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { DevPanel } from './components/DevPanel.jsx';
 import { EnhancedHelixProjectsShowcase } from './components/EnhancedHelixProjectsShowcase.jsx';
 import { HelixProvider } from './contexts/HelixContext.jsx';
 import { useEffectsCompat } from './hooks/useMigrationBridge.js';
@@ -15,17 +14,7 @@ function AppContent() {
 
   return (
     <div className="App relative">
-      <DevPanel 
-        effects={effects}
-        onEffectToggle={toggleEffect}
-        onReset={resetEffects}
-        onUndo={undoEffects}
-        onRedo={redoEffects}
-        canUndo={canUndoEffects}
-        canRedo={canRedoEffects}
-        setPlacementStrength={setPlacementStrength}
-        setRepeatTurns={setRepeatTurns}
-      />
+      {/* DevPanel removed for streamlined UI */}
       
       <EnhancedHelixProjectsShowcase 
         autoRotate={true}
