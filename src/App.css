@@ -229,6 +229,8 @@
   perspective: 1500px !important;
   perspective-origin: center center;
   overflow: visible !important; /* Prevent clipping */
+  will-change: transform;
+  transform: translateZ(0); /* Force GPU layer */
 }
 
 .helix-assembly {

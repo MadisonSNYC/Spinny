@@ -500,8 +500,9 @@ export const EnhancedHelixProjectsShowcase = ({
     let isUpdating = false;
     let velocity = 0;
     let lastTime = performance.now();
-    const friction = 0.95; // Momentum decay
-    const minVelocity = 0.001; // Threshold to stop momentum
+    const friction = 0.92; // Increased friction to reduce momentum
+    const minVelocity = 0.01; // Higher threshold to stop momentum sooner
+    const maxVelocity = 2; // Cap maximum velocity to prevent glitching
 
     const updateScrollAnimation = () => {
       const now = performance.now();
@@ -515,6 +516,9 @@ export const EnhancedHelixProjectsShowcase = ({
       if (pendingDelta !== 0 || Math.abs(velocity) > minVelocity) {
         // Update velocity
         velocity = velocity * friction + pendingDelta;
+        
+        // Clamp velocity to prevent glitching
+        velocity = Math.max(-maxVelocity, Math.min(maxVelocity, velocity));
         
         // Apply velocity to scroll using new state management
         updateScroll(velocity, now);
@@ -540,10 +544,10 @@ export const EnhancedHelixProjectsShowcase = ({
       const deltaX = 0; // Explicitly ignore horizontal scroll
       
       // Normalize the delta for consistent behavior across devices
-      const normalizedDelta = deltaY * 0.0026; // Increased by 30% for more transformation
+      const normalizedDelta = deltaY * 0.0018; // Reduced for smoother scrolling
       const sensitivity = helixConfig.scrollSensitivity || 1;
       
-      pendingDelta = normalizedDelta * sensitivity * 0.15; // Apply smoothing factor
+      pendingDelta = normalizedDelta * sensitivity * 0.12; // Apply smoothing factor
       
       if (!isUpdating) {
         isUpdating = true;
