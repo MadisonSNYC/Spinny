@@ -34,7 +34,7 @@ const defaultHelixConfig = {
   renderDistance: null,
   
   // Visualization
-  showEveryNth: 1, // Show all cards as full cards (1 = no orbs)
+  showEveryNth: 4, // Show every 4th card by default
   
   // Runtime (read-only)
   totalProjects: 16,

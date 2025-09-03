@@ -364,7 +364,7 @@ export const AdvancedHelixPanel = ({ helixConfig, onConfigChange, onReset, onUnd
 
           <SliderControl
             label="SHOW EVERY Nth CARD"
-            value={helixConfig.showEveryNth || 1}
+            value={helixConfig.showEveryNth || 4}
             min={1}
             max={10}
             step={1}
