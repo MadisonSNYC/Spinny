@@ -470,7 +470,7 @@ toggleEffect('chromaticAberration', boolean);
 
 **Repository**: https://github.com/MadisonSNYC/Spinny  
 **Author**: Madison Raye Sutton  
-**License**: MIT
+**License**: PROPRIETARY - All Rights Reserved
 
 ---
 

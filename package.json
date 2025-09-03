@@ -1,7 +1,14 @@
 {
-  "name": "dna-helix-demo",
+  "name": "spinny",
   "private": true,
-  "version": "0.0.0",
+  "version": "3.1.0",
+  "description": "3D DNA Helix Portfolio Showcase",
+  "author": "Madison Raye Sutton",
+  "license": "PROPRIETARY",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MadisonSNYC/Spinny.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

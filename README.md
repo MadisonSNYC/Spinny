@@ -189,7 +189,9 @@ npm run format      # Format with Prettier
 
 ## License
 
-MIT License - see LICENSE file for details
+Proprietary - Copyright © 2025 Madison Raye Sutton. All Rights Reserved.
+
+This software is proprietary and confidential. See LICENSE file for details.
 
 ## Credits
 
