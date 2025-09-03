@@ -46,6 +46,12 @@
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
+  
+  /* Helix responsive variables */
+  --helix-scale: 1;
+  --helix-card-width: 180px;
+  --helix-card-height: 320px;
+  --helix-perspective: 1200px;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -425,24 +431,24 @@
 @media (max-width: 480px) {
   /* Mobile phone specific adjustments */
   .helix-scene {
-    transform: scale(0.6) translateZ(0) !important;
-    perspective: 800px !important;
+    transform: scale(0.4) translateZ(0) !important;
+    perspective: 600px !important;
   }
   
   .helix-assembly .helix-node:not([data-orb-index]) {
-    width: 120px !important;
-    height: 213px !important;
-    min-width: 120px !important;
-    max-width: 120px !important;
-    min-height: 213px !important;
-    max-height: 213px !important;
+    width: 90px !important;
+    height: 160px !important;
+    min-width: 90px !important;
+    max-width: 90px !important;
+    min-height: 160px !important;
+    max-height: 160px !important;
   }
   
   /* Simplify effects for mobile performance */
   .glow-effect,
   .rgb-edge,
   .screen-glow {
-    opacity: 0.5 !important;
+    opacity: 0.3 !important;
   }
   
   /* Adjust container for mobile viewport */
@@ -454,6 +460,38 @@
   .helix-container {
     touch-action: pan-y;
     -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Reduce helix radius on mobile */
+  .helix-assembly {
+    --helix-radius: 150px !important;
+  }
+}
+
+/* Extra small mobile phones (portrait) */
+@media (max-width: 375px) and (orientation: portrait) {
+  .helix-scene {
+    transform: scale(0.35) translateZ(0) !important;
+    perspective: 500px !important;
+  }
+  
+  .helix-assembly .helix-node:not([data-orb-index]) {
+    width: 80px !important;
+    height: 142px !important;
+    min-width: 80px !important;
+    max-width: 80px !important;
+    min-height: 142px !important;
+    max-height: 142px !important;
+  }
+  
+  /* Even smaller radius for tiny screens */
+  .helix-assembly {
+    --helix-radius: 120px !important;
+  }
+  
+  /* Alternative: Show single column carousel on very small screens */
+  .helix-single-column-fallback {
+    display: block !important;
   }
 }
 
