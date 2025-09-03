@@ -1,11 +1,10 @@
 import React from 'react';
 import { EnhancedHelixProjectsShowcase } from './components/EnhancedHelixProjectsShowcase.jsx';
-import { HelixProvider } from './contexts/HelixContext.jsx';
-import { useEffectsCompat } from './hooks/useMigrationBridge.js';
+import { HelixProvider, useHelixConfig } from './contexts/HelixContext.jsx';
 import './App.css';
 
 function AppContent() {
-  const { effects } = useEffectsCompat();
+  const { effects } = useHelixConfig();
 
   return (
     <div className="App relative">
