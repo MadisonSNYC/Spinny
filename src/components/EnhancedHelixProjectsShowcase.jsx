@@ -14,7 +14,6 @@ import { TypographyEffects } from './effects/TypographyEffects.jsx';
 
 // Advanced controls
 import { useHelixConfig as useOldHelixConfig } from '../hooks/useHelixConfig.js';
-import { useLockedEffects } from '../hooks/useLockedEffects.js';
 
 const SpringConnection = ({ start, end, opacity = 1, color = "#00ffff", intensity = 1 }) => {
   // Check if positions are properly populated
@@ -459,14 +458,9 @@ export const EnhancedHelixProjectsShowcase = ({
     updateRuntimeInfo 
   } = useOldHelixConfig();
   
-  // Locked effects management
-  const { lockedEffects, toggleLock } = useLockedEffects();
-
-  // Protected effect toggle function that respects locks
+  // Effect toggle function (no longer needs lock protection)
   const handleEffectToggle = (effectKey, value) => {
-    if (!lockedEffects[effectKey]) {
-      onEffectToggle?.(effectKey, value);
-    }
+    onEffectToggle?.(effectKey, value);
   };
 
   // Update runtime info for the panel - throttled to reduce re-renders
