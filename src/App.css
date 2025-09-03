@@ -387,5 +387,130 @@
   -webkit-backface-visibility: hidden !important;
 }
 
+/* Mobile Responsive Breakpoints */
+@media (max-width: 768px) {
+  /* Tablet and mobile adjustments */
+  .helix-container {
+    width: 100% !important;
+    height: 100vh !important;
+    padding: 0 !important;
+  }
+  
+  .helix-scene {
+    transform: scale(0.8) translateZ(0) !important;
+  }
+  
+  .helix-assembly .helix-node:not([data-orb-index]) {
+    width: 140px !important;
+    height: 249px !important;
+    min-width: 140px !important;
+    max-width: 140px !important;
+    min-height: 249px !important;
+    max-height: 249px !important;
+  }
+  
+  /* Reduce visual effects on mobile for performance */
+  .chromatic-aberration,
+  .film-grain,
+  .scan-lines {
+    opacity: 0.3 !important;
+  }
+  
+  /* Adjust helix structure for mobile */
+  .helix-assembly {
+    --helix-radius: 200px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Mobile phone specific adjustments */
+  .helix-scene {
+    transform: scale(0.6) translateZ(0) !important;
+    perspective: 800px !important;
+  }
+  
+  .helix-assembly .helix-node:not([data-orb-index]) {
+    width: 120px !important;
+    height: 213px !important;
+    min-width: 120px !important;
+    max-width: 120px !important;
+    min-height: 213px !important;
+    max-height: 213px !important;
+  }
+  
+  /* Simplify effects for mobile performance */
+  .glow-effect,
+  .rgb-edge,
+  .screen-glow {
+    opacity: 0.5 !important;
+  }
+  
+  /* Adjust container for mobile viewport */
+  body {
+    overflow-x: hidden;
+    touch-action: pan-y;
+  }
+  
+  .helix-container {
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Desktop optimizations */
+  .helix-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .helix-scene {
+    transform: scale(1) translateZ(0);
+  }
+}
+
+/* Landscape mobile adjustments */
+@media (max-width: 896px) and (orientation: landscape) {
+  .helix-scene {
+    transform: scale(0.5) translateZ(0) !important;
+  }
+  
+  .helix-container {
+    height: 100vh !important;
+  }
+  
+  .helix-assembly .helix-node:not([data-orb-index]) {
+    width: 100px !important;
+    height: 178px !important;
+    min-width: 100px !important;
+    max-width: 100px !important;
+    min-height: 178px !important;
+    max-height: 178px !important;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Disable hover effects on touch devices */
+  .helix-node:hover {
+    transform: none !important;
+  }
+  
+  /* Improve touch scrolling */
+  .helix-container {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+}
+
+/* High DPI screen optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Sharper rendering on retina displays */
+  .helix-node {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
 
 
