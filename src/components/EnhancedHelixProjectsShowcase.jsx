@@ -16,7 +16,6 @@ import { TypographyEffects } from './effects/TypographyEffects.jsx';
 
 // Advanced controls
 import { AdvancedHelixPanel } from './AdvancedHelixPanel.jsx';
-import { EffectsControlPanel } from './EffectsControlPanel.jsx';
 import { useHelixConfig as useOldHelixConfig } from '../hooks/useHelixConfig.js';
 import { useLockedEffects } from '../hooks/useLockedEffects.js';
 
@@ -848,20 +847,7 @@ export const EnhancedHelixProjectsShowcase = ({
                   </div>
                 </section>
                 
-                {/* Effects Control Panel */}
-                <EffectsControlPanel
-                  effects={effects}
-                  onEffectToggle={handleEffectToggle}
-                  onReset={onReset}
-                  onUndo={onUndo}
-                  onRedo={onRedo}
-                  canUndo={canUndo}
-                  canRedo={canRedo}
-                  setPlacementStrength={setPlacementStrength}
-                  setRepeatTurns={setRepeatTurns}
-                  lockedEffects={lockedEffects}
-                  onToggleLock={toggleLock}
-                />
+                {/* Effects Control Panel - Removed for streamlined UI */}
 
                 {/* Advanced Helix Control Panel */}
                 <AdvancedHelixPanel
