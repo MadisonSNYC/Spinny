@@ -471,9 +471,7 @@
 }
 
 /* Lighter effect for individual cards to avoid double-filtering */
-.helix-node.fx-cinematic {
-  /* No filter on individual cards - inherit from scene */
-}
+/* Note: No filter on individual cards - they inherit from scene */
 
 /* Intensify on scroll speed */
 .fx-cinematic.scroll-fast {
@@ -491,11 +489,7 @@
 }
 
 /* Apply to media elements - preserve dimensions */
-.fx-cinematic .media-3d,
-.fx-cinematic video,
-.fx-cinematic img {
-  /* Don't inherit filter to avoid affecting layout */
-}
+/* Note: Media elements don't inherit filters to avoid affecting layout */
 
 /* Cinematic vignette overlay */
 .fx-cinematic::after {

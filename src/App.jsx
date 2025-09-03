@@ -1,6 +1,7 @@
 import React from 'react';
 import { EnhancedHelixProjectsShowcase } from './components/EnhancedHelixProjectsShowcase.jsx';
 import { HelixProvider, useHelixConfig } from './contexts/HelixContext.jsx';
+import ErrorBoundary from './components/ErrorBoundary.jsx';
 import './App.css';
 
 function AppContent() {
@@ -16,12 +17,14 @@ function AppContent() {
   );
 }
 
-// Wrap with provider
+// Wrap with provider and error boundary
 function App() {
   return (
-    <HelixProvider>
-      <AppContent />
-    </HelixProvider>
+    <ErrorBoundary>
+      <HelixProvider>
+        <AppContent />
+      </HelixProvider>
+    </ErrorBoundary>
   );
 }
 
