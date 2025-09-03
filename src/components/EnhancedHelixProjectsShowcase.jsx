@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
-import { Button } from './ui/button.jsx';
-import { Pause, Play, SkipForward, Square } from 'lucide-react';
 import { projects } from '../data/projects.js';
 import { helixPositionCache } from '../utils/helixPositionCache.js';
 import { performanceMonitor } from '../utils/performanceMonitor.js';
