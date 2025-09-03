@@ -15,7 +15,6 @@ import { NavigationEffects } from './effects/NavigationEffects.jsx';
 import { TypographyEffects } from './effects/TypographyEffects.jsx';
 
 // Advanced controls
-import { AdvancedHelixPanel } from './AdvancedHelixPanel.jsx';
 import { useHelixConfig as useOldHelixConfig } from '../hooks/useHelixConfig.js';
 import { useLockedEffects } from '../hooks/useLockedEffects.js';
 
@@ -849,16 +848,7 @@ export const EnhancedHelixProjectsShowcase = ({
                 
                 {/* Effects Control Panel - Removed for streamlined UI */}
 
-                {/* Advanced Helix Control Panel */}
-                <AdvancedHelixPanel
-                  helixConfig={helixConfig}
-                  onConfigChange={updateHelixConfig}
-                  onReset={resetHelixConfig}
-                  onUndo={undoHelixConfig}
-                  onRedo={redoHelixConfig}
-                  canUndo={canUndoHelix}
-                  canRedo={canRedoHelix}
-                />
+                {/* Advanced Helix Control Panel - Removed for streamlined UI */}
               </TypographyEffects>
             </NavigationEffects>
           </StructureEffects>
